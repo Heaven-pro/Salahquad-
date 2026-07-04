@@ -2,7 +2,13 @@
 import { LOCALES, LANGUAGE_LABELS, TRANSLATIONS, type Locale } from '@/lib/i18n';
 import Navbar from '@/components/Navbar';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import { instagramHighlights, localGalleryImages, localGalleryVideos } from '@/lib/gallery-content';
+import {
+  instagramEntries,
+  instagramEmbedUrl,
+  instagramHighlights,
+  localGalleryImages,
+  localGalleryVideos,
+} from '@/lib/gallery-content';
 import coverImage from '@/lib/image de garde.jpeg';
 
 interface GalleryPageProps {
@@ -57,7 +63,7 @@ function MediaVideoCard({ title, description, src }: (typeof localGalleryVideos)
 }
 
 function InstagramHighlightCard({ title, description, src, href }: (typeof instagramHighlights)[number]) {
-  const objectPosition = title === 'Profil Instagram' ? '50% 12%' : '82% center';
+  const objectPosition = title === 'Profil Instagram' ? '45% 12%' : '18% center';
 
   return (
     <a
@@ -149,41 +155,55 @@ export default function GalleryPage({ locale }: GalleryPageProps) {
       </section>
 
       <section className="py-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(202,162,74,0.08),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(45,139,121,0.05),transparent_35%)]" />
         <div className="mx-auto max-w-7xl px-6 relative z-10 space-y-10">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="text-xs uppercase tracking-[0.26em] text-dune mb-3">Contenu local</p>
-              <h2 className="font-display text-3xl md:text-4xl text-bone">Médias disponibles avant Instagram</h2>
-            </div>
-            <p className="text-sm text-muted max-w-xl leading-relaxed">
-              Ces médias viennent du dossier <span className="text-bone">src/lib</span> et sont affichés en premier pour une navigation plus claire.
-            </p>
-          </div>
-
-          <div className="space-y-8">
-            <div>
-              <div className="flex items-center justify-between gap-4 mb-4">
-                <h3 className="font-display text-2xl text-bone">Photos locales</h3>
-                <span className="text-xs uppercase tracking-[0.22em] text-muted">{localGalleryImages.length} éléments</span>
+          <div className="space-y-6">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="text-xs uppercase tracking-[0.26em] text-dune mb-3">Archives Instagram</p>
+                <h2 className="font-display text-3xl md:text-4xl text-bone">Toutes les publications et reels</h2>
               </div>
-              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                {localGalleryImages.map((item) => (
-                  <MediaImageCard key={item.title} {...item} />
-                ))}
-              </div>
+              <p className="text-sm text-muted max-w-xl leading-relaxed">
+                La galerie compl?te d?Instagram reste disponible comme avant, en compl?ment des captures locales.
+              </p>
             </div>
 
-            <div>
-              <div className="flex items-center justify-between gap-4 mb-4">
-                <h3 className="font-display text-2xl text-bone">Vidéos locales</h3>
-                <span className="text-xs uppercase tracking-[0.22em] text-muted">{localGalleryVideos.length} éléments</span>
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                {localGalleryVideos.map((item) => (
-                  <MediaVideoCard key={item.title} {...item} />
-                ))}
-              </div>
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              {instagramEntries.map((item, index) =>
+                item.kind === 'profile' ? (
+                  <a
+                    key={item.url}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="glass rounded-3xl border border-dune/10 p-6 card-hover flex flex-col justify-between min-h-[520px]"
+                  >
+                    <div>
+                      <p className="text-dune uppercase text-xs tracking-[0.22em] mb-4">Profil</p>
+                      <h3 className="font-display text-2xl text-bone mb-3 break-words">Salah Quad Marrakech</h3>
+                      <p className="text-muted text-sm leading-relaxed">Acc?de au compte Instagram officiel pour voir toutes les publications, stories et vid?os r?centes.</p>
+                    </div>
+                    <div className="rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-dune/10 via-transparent to-transparent p-6">
+                      <p className="text-2xl sm:text-3xl font-display text-bone break-all">@quad_marrakech_salah</p>
+                      <p className="text-muted mt-2 text-sm">Ouvrir le profil officiel</p>
+                    </div>
+                  </a>
+                ) : (
+                  <div key={item.url} className="glass rounded-3xl overflow-hidden border border-dune/10 card-hover">
+                    <iframe
+                      src={instagramEmbedUrl(item.url)}
+                      className="w-full h-[560px] border-0 bg-ink"
+                      loading="lazy"
+                      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                      allowFullScreen
+                      title={item.label}
+                    />
+                    <div className="p-4">
+                      <p className="font-semibold text-bone">{item.label}</p>
+                      <p className="text-xs text-muted mt-1">Publication Instagram {index + 1}</p>
+                    </div>
+                  </div>
+                )
+              )}
             </div>
           </div>
         </div>
@@ -194,7 +214,7 @@ export default function GalleryPage({ locale }: GalleryPageProps) {
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="text-xs uppercase tracking-[0.26em] text-dune mb-3">Instagram</p>
-              <h2 className="font-display text-3xl md:text-4xl text-bone">Aperçus du compte officiel</h2>
+              <h2 className="font-display text-3xl md:text-4xl text-bone">Captures Instagram recentes</h2>
             </div>
             <a
               href="https://www.instagram.com/quad_marrakech_salah?igsh=MWVqa3M5NDB2cDY5Zg=="
@@ -211,10 +231,6 @@ export default function GalleryPage({ locale }: GalleryPageProps) {
               <InstagramHighlightCard key={item.title} {...item} />
             ))}
           </div>
-
-          <p className="text-sm text-muted max-w-3xl leading-relaxed">
-            Les captures Instagram locales sont cadrées en portrait pour une lecture plus nette sur mobile, tout en gardant l’accès au compte officiel.
-          </p>
         </div>
       </section>
     </main>
