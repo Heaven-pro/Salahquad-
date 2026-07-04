@@ -154,6 +154,46 @@ export default function GalleryPage({ locale }: GalleryPageProps) {
           </div>
         </div>
       </section>
+      <section className="py-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(202,162,74,0.08),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(45,139,121,0.05),transparent_35%)]" />
+        <div className="mx-auto max-w-7xl px-6 relative z-10 space-y-10">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-xs uppercase tracking-[0.26em] text-dune mb-3">Contenu local</p>
+              <h2 className="font-display text-3xl md:text-4xl text-bone">Photos et videos du dossier src/lib</h2>
+            </div>
+            <p className="text-sm text-muted max-w-xl leading-relaxed">
+              Les medias locaux apparaissent en premier pour garder la galerie claire et rapide a parcourir.
+            </p>
+          </div>
+
+          <div className="space-y-8">
+            <div>
+              <div className="flex items-center justify-between gap-4 mb-4">
+                <h3 className="font-display text-2xl text-bone">Photos locales</h3>
+                <span className="text-xs uppercase tracking-[0.22em] text-muted">{localGalleryImages.length} elements</span>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                {localGalleryImages.map((item) => (
+                  <MediaImageCard key={item.title} {...item} />
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between gap-4 mb-4">
+                <h3 className="font-display text-2xl text-bone">Videos locales</h3>
+                <span className="text-xs uppercase tracking-[0.22em] text-muted">{localGalleryVideos.length} elements</span>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                {localGalleryVideos.map((item) => (
+                  <MediaVideoCard key={item.title} {...item} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="py-16 relative overflow-hidden">
         <div className="mx-auto max-w-7xl px-6 relative z-10 space-y-10">
@@ -164,7 +204,7 @@ export default function GalleryPage({ locale }: GalleryPageProps) {
                 <h2 className="font-display text-3xl md:text-4xl text-bone">Toutes les publications et reels</h2>
               </div>
               <p className="text-sm text-muted max-w-xl leading-relaxed">
-                La galerie compl?te d?Instagram reste disponible comme avant, en compl?ment des captures locales.
+                La galerie complete d'Instagram reste disponible comme avant, en complement des captures locales.
               </p>
             </div>
 
@@ -181,7 +221,7 @@ export default function GalleryPage({ locale }: GalleryPageProps) {
                     <div>
                       <p className="text-dune uppercase text-xs tracking-[0.22em] mb-4">Profil</p>
                       <h3 className="font-display text-2xl text-bone mb-3 break-words">Salah Quad Marrakech</h3>
-                      <p className="text-muted text-sm leading-relaxed">Acc?de au compte Instagram officiel pour voir toutes les publications, stories et vid?os r?centes.</p>
+                      <p className="text-muted text-sm leading-relaxed">Accede au compte Instagram officiel pour voir toutes les publications, stories et videos recentes.</p>
                     </div>
                     <div className="rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-dune/10 via-transparent to-transparent p-6">
                       <p className="text-2xl sm:text-3xl font-display text-bone break-all">@quad_marrakech_salah</p>
@@ -215,7 +255,7 @@ export default function GalleryPage({ locale }: GalleryPageProps) {
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="text-xs uppercase tracking-[0.26em] text-dune mb-3">Instagram</p>
-              <h2 className="font-display text-3xl md:text-4xl text-bone">Captures Instagram r?centes</h2>
+              <h2 className="font-display text-3xl md:text-4xl text-bone">Captures Instagram recentes</h2>
             </div>
             <a
               href={INSTAGRAM_PROFILE_URL}

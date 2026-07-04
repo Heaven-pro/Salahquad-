@@ -105,17 +105,25 @@ export default function BookingWidget({ excursions, locale, reservationLabels, b
 
     const summary = `${pilots} ${localeText.pilot}, ${passengers} ${localeText.passenger}, ${children} ${localeText.child}`;
     const title = locale === 'fr' ? exc.titleFr : exc.titleEn;
-    const extra = message ? '\n\n? Message: ' + message : '';
-    const msg = [
-      bookingLabels.whatsapp.intro,
-      bookingLabels.whatsapp.activity,
-      '? ' + title,
-      '? ' + bookingLabels.whatsapp.duration + ': ' + (exc.durations[durIdx]?.label ?? ''),
-      '? ' + bookingLabels.whatsapp.dateAt + ': ' + date + ' ' + time,
-      '? ' + bookingLabels.whatsapp.people + ': ' + summary,
-      '? ' + bookingLabels.whatsapp.totalEstimate + ': ' + dualPrice(totalCents) + extra,
-      bookingLabels.whatsapp.thanks,
-    ].join('\n\n');
+    const lines = [
+      'Bonjour Salah Quad Marrakech !',
+      '',
+      'Je souhaite reserver :',
+      '',
+      `- ${title}`,
+      `- Duree : ${exc.durations[durIdx]?.label ?? ''}`,
+      `- Date : ${date} ${time}`,
+      `- Personnes : ${summary}`,
+      `- Total estime : ${dualPrice(totalCents)}`,
+    ];
+
+    if (message) {
+      lines.push(`- Message : ${message}`);
+    }
+
+    lines.push('', 'Merci de confirmer la disponibilite !');
+
+    const msg = lines.join('\n');
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
   }
   const inputCls = 'w-full bg-ink/80 border border-dune/15 rounded-xl px-4 py-3 text-bone focus:border-dune/50 focus:ring-1 focus:ring-dune/20 outline-none transition-all text-sm';
@@ -266,7 +274,7 @@ export default function BookingWidget({ excursions, locale, reservationLabels, b
 
         <button
           onClick={openWhatsApp}
-                    className="w-full rounded-full bg-gradient-to-br from-dune-soft to-dune text-[#211a10] font-bold py-4 mb-3 btn-shine disabled:opacity-60 transition-transform hover:scale-[1.02] active:scale-[0.98]"
+          className="w-full rounded-full bg-gradient-to-br from-dune-soft to-dune text-[#211a10] font-bold py-4 mb-3 btn-shine disabled:opacity-60 transition-transform hover:scale-[1.02] active:scale-[0.98]"
         >
           {reservationLabels.confirmButton}
         </button>
