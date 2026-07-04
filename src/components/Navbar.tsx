@@ -49,8 +49,8 @@ export default function Navbar({ locale, labels, languages }: NavbarProps) {
         scrolled ? 'glass-strong shadow-xl' : 'bg-transparent'
       }`}
     >
-      <div className="mx-auto max-w-7xl px-5 flex items-center justify-between h-[72px]">
-        <a href={`/${locale}`} className="flex items-center gap-3 group">
+      <div className="mx-auto max-w-7xl px-5 flex items-center justify-between h-[72px] relative">
+        <a href={`/${locale}`} className="hidden md:flex items-center gap-3 group">
           <div className="w-10 h-10 rounded-xl overflow-hidden border border-dune/15 bg-ink/60 transform group-hover:scale-110 transition-transform">
             <Image
               src={logoImage}
@@ -64,6 +64,26 @@ export default function Navbar({ locale, labels, languages }: NavbarProps) {
           <div className="hidden sm:block">
             <span className="font-display text-lg text-bone leading-none">Salah Quad</span>
             <span className="block text-[10px] tracking-[0.25em] uppercase text-dune font-semibold">Marrakech</span>
+          </div>
+        </a>
+
+        <a
+          href={`/${locale}`}
+          className="md:hidden absolute left-1/2 -translate-x-1/2 flex items-center gap-2 group"
+        >
+          <div className="w-10 h-10 rounded-xl overflow-hidden border border-dune/15 bg-ink/60 transform group-hover:scale-110 transition-transform">
+            <Image
+              src={logoImage}
+              alt="Salah Quad Marrakech"
+              width={40}
+              height={40}
+              className="h-full w-full object-contain"
+              priority
+            />
+          </div>
+          <div className="leading-none text-center">
+            <span className="font-display text-[clamp(1rem,4vw,1.15rem)] text-bone tracking-[0.04em]">Salah Quad</span>
+            <span className="block text-[9px] tracking-[0.28em] uppercase text-dune font-semibold mt-1">Marrakech</span>
           </div>
         </a>
 
@@ -159,3 +179,4 @@ export default function Navbar({ locale, labels, languages }: NavbarProps) {
     </nav>
   );
 }
+

@@ -8,7 +8,7 @@ import {
   localGalleryImages,
   localGalleryVideos,
 } from '@/lib/gallery-content';
-import coverImage from '@/lib/image de garde.png';
+import coverImage from '@/lib/image de garde.jpeg';
 
 interface GalleryPageProps {
   locale: Locale;
@@ -220,3 +220,4 @@ export default function GalleryPage({ locale }: GalleryPageProps) {
     </main>
   );
 }
+

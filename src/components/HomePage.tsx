@@ -14,7 +14,7 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 import AppIcon from '@/components/AppIcon';
 import { WHATSAPP_NUMBER } from '@/lib/contact';
 import logoImage from '@/lib/Logo.png';
-import coverImage from '@/lib/image de garde.png';
+import coverImage from '@/lib/image de garde.jpeg';
 import categoryQuadImage from '@/lib/4 quads.png';
 import categoryBuggyImage from '@/lib/2 buggy.png';
 import categoryCrossImage from '@/lib/2 cross.png';
@@ -180,10 +180,10 @@ export default function HomePage({ excursions, reviews }: HomePageProps) {
               </a>
             </div>
 
-            <div className="mx-auto mt-12 md:mt-14 max-w-6xl rounded-[1.5rem] bg-black/36 border border-white/12 px-4 py-4 backdrop-blur-sm animate-fade-in-up" style={{ animationDelay: '0.45s' }}>
-              <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 justify-items-stretch items-center">
-                {heroHighlights[locale].map((item) => (
-                  <div key={item.title} className="hero-stat rounded-2xl px-4 py-3 flex items-center gap-3 min-h-[72px]">
+            <div className="mx-auto mt-12 md:mt-14 max-w-[26rem] sm:max-w-[36rem] lg:max-w-6xl rounded-[1.5rem] bg-black/36 border border-white/12 px-3 sm:px-4 py-3 sm:py-4 backdrop-blur-sm animate-fade-in-up" style={{ animationDelay: '0.45s' }}>
+              <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 justify-items-stretch items-center">
+                {heroHighlights[locale].map((item, index) => (
+                  <div key={item.title} className={`hero-stat rounded-2xl px-4 py-3 flex items-center gap-3 min-h-[72px] ${index === heroHighlights[locale].length - 1 ? 'sm:col-span-2 lg:col-span-1' : ''}`}>
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-dune/20 bg-dune/10 text-dune-soft">
                       <AppIcon name={item.icon} className="h-5 w-5" />
                     </div>
@@ -636,6 +636,8 @@ export default function HomePage({ excursions, reviews }: HomePageProps) {
     </main>
   );
 }
+
+
 
 
 
