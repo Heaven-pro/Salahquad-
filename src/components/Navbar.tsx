@@ -36,6 +36,13 @@ export default function Navbar({ locale, labels, languages }: NavbarProps) {
   const localePattern = languages.map((l) => l.code).join('|');
   const currentPath = pathname.replace(new RegExp(`^/(${localePattern})`), '') || '/';
   const galleryPath = `/${locale}/gallery`;
+  const isGalleryPage = currentPath.startsWith('/gallery');
+
+  const resolveNavHref = (href: string) => {
+    if (href === 'gallery') return galleryPath;
+    if (isGalleryPage && href.startsWith('#')) return `/${locale}${href}`;
+    return href;
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -91,7 +98,7 @@ export default function Navbar({ locale, labels, languages }: NavbarProps) {
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
-              href={link.href === 'gallery' ? galleryPath : link.href}
+              href={resolveNavHref(link.href)}
               className="px-4 py-2 text-sm font-medium text-muted hover:text-bone transition-colors rounded-lg hover:bg-dune/5"
             >
               {labels[link.key as keyof typeof labels]}
@@ -145,7 +152,7 @@ export default function Navbar({ locale, labels, languages }: NavbarProps) {
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
-              href={link.href === 'gallery' ? galleryPath : link.href}
+              href={resolveNavHref(link.href)}
               onClick={() => setOpen(false)}
               className="block px-4 py-3 text-sm font-medium text-muted hover:text-bone hover:bg-dune/10 rounded-xl transition-colors"
             >
