@@ -14,6 +14,8 @@ import instagramShot4Image from '@/lib/instagram/instagram-4.jpeg';
 import instagramShot5Image from '@/lib/instagram/instagram-5.jpeg';
 import instagramShot6Image from '@/lib/instagram/instagram-6.jpeg';
 
+export const INSTAGRAM_PROFILE_URL = 'https://www.instagram.com/quad_marrakech_salah?igsh=MWVqa3M5NDB2cDY5Zg==';
+
 export type GalleryEntry =
   | { kind: 'profile'; url: string; label: string }
   | { kind: 'embed'; url: string; label: string };
@@ -144,54 +146,54 @@ export const instagramHighlights: InstagramHighlight[] = [
     src: instagramProfilImage,
     title: 'Profil Instagram',
     description: 'Présentation du compte officiel Salah Quad Marrakech.',
-    href: 'https://www.instagram.com/quad_marrakech_salah?igsh=MWVqa3M5NDB2cDY5Zg==',
+    href: INSTAGRAM_PROFILE_URL,
   },
   {
     kind: 'image',
     src: instagramShot1Image,
     title: 'Publication Instagram 1',
     description: 'Aperçu du contenu Instagram officiel.',
-    href: 'https://www.instagram.com/quad_marrakech_salah?igsh=MWVqa3M5NDB2cDY5Zg==',
+    href: INSTAGRAM_PROFILE_URL,
   },
   {
     kind: 'image',
     src: instagramShot2Image,
     title: 'Publication Instagram 2',
     description: 'Capture d’une publication vidéo du compte.',
-    href: 'https://www.instagram.com/quad_marrakech_salah?igsh=MWVqa3M5NDB2cDY5Zg==',
+    href: INSTAGRAM_PROFILE_URL,
   },
   {
     kind: 'image',
     src: instagramShot3Image,
     title: 'Reel Instagram 3',
     description: 'Aperçu d’un reel sur les quads en action.',
-    href: 'https://www.instagram.com/quad_marrakech_salah?igsh=MWVqa3M5NDB2cDY5Zg==',
+    href: INSTAGRAM_PROFILE_URL,
   },
   {
     kind: 'image',
     src: instagramShot4Image,
     title: 'Reel Instagram 4',
     description: 'Moment sunset en quad dans la Palmeraie.',
-    href: 'https://www.instagram.com/quad_marrakech_salah?igsh=MWVqa3M5NDB2cDY5Zg==',
+    href: INSTAGRAM_PROFILE_URL,
   },
   {
     kind: 'image',
     src: instagramShot5Image,
     title: 'Reel Instagram 5',
     description: 'Aperçu d’une sortie en groupe sur la piste.',
-    href: 'https://www.instagram.com/quad_marrakech_salah?igsh=MWVqa3M5NDB2cDY5Zg==',
+    href: INSTAGRAM_PROFILE_URL,
   },
   {
     kind: 'image',
     src: instagramShot6Image,
     title: 'Reel Instagram 6',
     description: 'Session en quad et ambiance désert.',
-    href: 'https://www.instagram.com/quad_marrakech_salah?igsh=MWVqa3M5NDB2cDY5Zg==',
+    href: INSTAGRAM_PROFILE_URL,
   },
 ];
 
 export const instagramEntries: GalleryEntry[] = [
-  { kind: 'profile', url: 'https://www.instagram.com/quad_marrakech_salah?igsh=MWVqa3M5NDB2cDY5Zg==', label: 'Compte Instagram' },
+  { kind: 'profile', url: INSTAGRAM_PROFILE_URL, label: 'Compte Instagram' },
   { kind: 'embed', url: 'https://www.instagram.com/p/CuwwLOvtO8C/?igsh=ZDF5aHFnZ21iOWc5', label: 'Publication Instagram 2' },
   { kind: 'embed', url: 'https://www.instagram.com/p/CuwwHEctLWg/?igsh=YXQzcmh4dmZuenM=', label: 'Publication Instagram 3' },
   { kind: 'embed', url: 'https://www.instagram.com/reel/C2104-LIixS/?igsh=OXN4M3dzOG0wMXhy', label: 'Reel Instagram 4' },

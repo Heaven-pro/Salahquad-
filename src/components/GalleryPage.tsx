@@ -3,6 +3,7 @@ import { LOCALES, LANGUAGE_LABELS, TRANSLATIONS, type Locale } from '@/lib/i18n'
 import Navbar from '@/components/Navbar';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import {
+  INSTAGRAM_PROFILE_URL,
   instagramEntries,
   instagramEmbedUrl,
   instagramHighlights,
@@ -214,10 +215,10 @@ export default function GalleryPage({ locale }: GalleryPageProps) {
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="text-xs uppercase tracking-[0.26em] text-dune mb-3">Instagram</p>
-              <h2 className="font-display text-3xl md:text-4xl text-bone">Captures Instagram recentes</h2>
+              <h2 className="font-display text-3xl md:text-4xl text-bone">Captures Instagram r?centes</h2>
             </div>
             <a
-              href="https://www.instagram.com/quad_marrakech_salah?igsh=MWVqa3M5NDB2cDY5Zg=="
+              href={INSTAGRAM_PROFILE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full border border-white/20 bg-black/30 text-bone px-5 py-3 font-bold text-sm hover:bg-black/45 transition-all backdrop-blur-sm"
