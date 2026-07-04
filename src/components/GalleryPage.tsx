@@ -2,12 +2,7 @@
 import { LOCALES, LANGUAGE_LABELS, TRANSLATIONS, type Locale } from '@/lib/i18n';
 import Navbar from '@/components/Navbar';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import {
-  instagramEntries,
-  instagramEmbedUrl,
-  localGalleryImages,
-  localGalleryVideos,
-} from '@/lib/gallery-content';
+import { instagramHighlights, localGalleryImages, localGalleryVideos } from '@/lib/gallery-content';
 import coverImage from '@/lib/image de garde.jpeg';
 
 interface GalleryPageProps {
@@ -61,6 +56,37 @@ function MediaVideoCard({ title, description, src }: (typeof localGalleryVideos)
   );
 }
 
+function InstagramHighlightCard({ title, description, src, href }: (typeof instagramHighlights)[number]) {
+  const objectPosition = title === 'Profil Instagram' ? '50% 12%' : '82% center';
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group glass rounded-3xl overflow-hidden border border-dune/10 shadow-[0_24px_60px_rgba(0,0,0,0.22)] card-hover"
+    >
+      <div className="relative aspect-[9/16] sm:aspect-[4/5] bg-black">
+        <Image
+          src={src}
+          alt={title}
+          fill
+          style={{ objectPosition }}
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/20 to-transparent" />
+        <div className="absolute left-4 right-4 bottom-4 space-y-2">
+          <div className="inline-flex items-center gap-2 rounded-full bg-black/50 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.22em] text-dune backdrop-blur-md border border-white/10">
+            Instagram
+          </div>
+          <h3 className="font-display text-2xl text-bone leading-tight">{title}</h3>
+          <p className="text-sm text-white/78 leading-relaxed">{description}</p>
+        </div>
+      </div>
+    </a>
+  );
+}
+
 export default function GalleryPage({ locale }: GalleryPageProps) {
   const t = TRANSLATIONS[locale];
   const localeLinks = LOCALES.map((code) => ({ code, label: LANGUAGE_LABELS[code] }));
@@ -83,9 +109,7 @@ export default function GalleryPage({ locale }: GalleryPageProps) {
                 Photos et vidéos
                 <span className="block text-gradient">Salah Quad Marrakech</span>
               </h1>
-              <p className="text-muted text-base md:text-lg max-w-2xl leading-relaxed">
-                {t.gallery.desc}
-              </p>
+              <p className="text-muted text-base md:text-lg max-w-2xl leading-relaxed">{t.gallery.desc}</p>
               <div className="flex flex-wrap gap-4">
                 <a
                   href={`/${locale}`}
@@ -166,58 +190,33 @@ export default function GalleryPage({ locale }: GalleryPageProps) {
       </section>
 
       <section className="py-16 relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 relative z-10">
-          <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
+        <div className="mx-auto max-w-7xl px-6 relative z-10 space-y-8">
+          <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="text-xs uppercase tracking-[0.26em] text-dune mb-3">Instagram</p>
-              <h2 className="font-display text-3xl md:text-4xl text-bone">Publications et reels Instagram</h2>
+              <h2 className="font-display text-3xl md:text-4xl text-bone">Aperçus du compte officiel</h2>
             </div>
-            <p className="text-sm text-muted max-w-xl leading-relaxed">
-              Le contenu Instagram reste disponible en complément des médias locaux.
-            </p>
+            <a
+              href="https://www.instagram.com/quad_marrakech_salah?igsh=MWVqa3M5NDB2cDY5Zg=="
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-white/20 bg-black/30 text-bone px-5 py-3 font-bold text-sm hover:bg-black/45 transition-all backdrop-blur-sm"
+            >
+              Ouvrir le profil officiel
+            </a>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {instagramEntries.map((item, index) =>
-              item.kind === 'profile' ? (
-                <a
-                  key={item.url}
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="glass rounded-3xl border border-dune/10 p-6 card-hover flex flex-col justify-between min-h-[520px]"
-                >
-                  <div>
-                    <p className="text-dune uppercase text-xs tracking-[0.22em] mb-4">Profil</p>
-                    <h3 className="font-display text-2xl text-bone mb-3">Salah Quad Marrakech</h3>
-                    <p className="text-muted text-sm leading-relaxed">Accède au compte Instagram officiel pour voir toutes les publications, stories et vidéos récentes.</p>
-                  </div>
-                  <div className="rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-dune/10 via-transparent to-transparent p-6">
-                    <p className="text-3xl font-display text-bone">@quad_marrakech_salah</p>
-                    <p className="text-muted mt-2 text-sm">Ouvrir le profil officiel</p>
-                  </div>
-                </a>
-              ) : (
-                <div key={item.url} className="glass rounded-3xl overflow-hidden border border-dune/10 card-hover">
-                  <iframe
-                    src={instagramEmbedUrl(item.url)}
-                    className="w-full h-[560px] border-0 bg-ink"
-                    loading="lazy"
-                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                    allowFullScreen
-                    title={item.label}
-                  />
-                  <div className="p-4">
-                    <p className="font-semibold text-bone">{item.label}</p>
-                    <p className="text-xs text-muted mt-1">Publication Instagram {index + 1}</p>
-                  </div>
-                </div>
-              )
-            )}
+          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+            {instagramHighlights.map((item) => (
+              <InstagramHighlightCard key={item.title} {...item} />
+            ))}
           </div>
+
+          <p className="text-sm text-muted max-w-3xl leading-relaxed">
+            Les captures Instagram locales sont cadrées en portrait pour une lecture plus nette sur mobile, tout en gardant l’accès au compte officiel.
+          </p>
         </div>
       </section>
     </main>
   );
 }
-

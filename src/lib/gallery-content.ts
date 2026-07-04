@@ -6,6 +6,13 @@ import twoCrossImage from '@/lib/2 cross.png';
 import fourQuadsImage from '@/lib/4 quads.png';
 import crosseeImage from '@/lib/crossee.JPG';
 import crossAndBuggyImage from '@/lib/cross et buggy.JPG';
+import instagramProfilImage from '@/lib/instagram/profil.jpeg';
+import instagramShot1Image from '@/lib/instagram/instagram-1.jpeg';
+import instagramShot2Image from '@/lib/instagram/instagram-2.jpeg';
+import instagramShot3Image from '@/lib/instagram/instagram-3.jpeg';
+import instagramShot4Image from '@/lib/instagram/instagram-4.jpeg';
+import instagramShot5Image from '@/lib/instagram/instagram-5.jpeg';
+import instagramShot6Image from '@/lib/instagram/instagram-6.jpeg';
 
 export type GalleryEntry =
   | { kind: 'profile'; url: string; label: string }
@@ -23,6 +30,14 @@ export type LocalGalleryVideo = {
   src: string;
   title: string;
   description: string;
+};
+
+export type InstagramHighlight = {
+  kind: 'image';
+  src: StaticImageData;
+  title: string;
+  description: string;
+  href: string;
 };
 
 const publicGalleryVideo = (name: string) => `/gallery/${encodeURIComponent(name)}`;
@@ -123,6 +138,58 @@ export const localGalleryVideos: LocalGalleryVideo[] = [
   },
 ];
 
+export const instagramHighlights: InstagramHighlight[] = [
+  {
+    kind: 'image',
+    src: instagramProfilImage,
+    title: 'Profil Instagram',
+    description: 'Présentation du compte officiel Salah Quad Marrakech.',
+    href: 'https://www.instagram.com/quad_marrakech_salah?igsh=MWVqa3M5NDB2cDY5Zg==',
+  },
+  {
+    kind: 'image',
+    src: instagramShot1Image,
+    title: 'Publication Instagram 1',
+    description: 'Aperçu du contenu Instagram officiel.',
+    href: 'https://www.instagram.com/quad_marrakech_salah?igsh=MWVqa3M5NDB2cDY5Zg==',
+  },
+  {
+    kind: 'image',
+    src: instagramShot2Image,
+    title: 'Publication Instagram 2',
+    description: 'Capture d’une publication vidéo du compte.',
+    href: 'https://www.instagram.com/quad_marrakech_salah?igsh=MWVqa3M5NDB2cDY5Zg==',
+  },
+  {
+    kind: 'image',
+    src: instagramShot3Image,
+    title: 'Reel Instagram 3',
+    description: 'Aperçu d’un reel sur les quads en action.',
+    href: 'https://www.instagram.com/quad_marrakech_salah?igsh=MWVqa3M5NDB2cDY5Zg==',
+  },
+  {
+    kind: 'image',
+    src: instagramShot4Image,
+    title: 'Reel Instagram 4',
+    description: 'Moment sunset en quad dans la Palmeraie.',
+    href: 'https://www.instagram.com/quad_marrakech_salah?igsh=MWVqa3M5NDB2cDY5Zg==',
+  },
+  {
+    kind: 'image',
+    src: instagramShot5Image,
+    title: 'Reel Instagram 5',
+    description: 'Aperçu d’une sortie en groupe sur la piste.',
+    href: 'https://www.instagram.com/quad_marrakech_salah?igsh=MWVqa3M5NDB2cDY5Zg==',
+  },
+  {
+    kind: 'image',
+    src: instagramShot6Image,
+    title: 'Reel Instagram 6',
+    description: 'Session en quad et ambiance désert.',
+    href: 'https://www.instagram.com/quad_marrakech_salah?igsh=MWVqa3M5NDB2cDY5Zg==',
+  },
+];
+
 export const instagramEntries: GalleryEntry[] = [
   { kind: 'profile', url: 'https://www.instagram.com/quad_marrakech_salah?igsh=MWVqa3M5NDB2cDY5Zg==', label: 'Compte Instagram' },
   { kind: 'embed', url: 'https://www.instagram.com/p/CuwwLOvtO8C/?igsh=ZDF5aHFnZ21iOWc5', label: 'Publication Instagram 2' },
@@ -160,6 +227,3 @@ export const instagramEmbedUrl = (url: string) => {
   const match = url.match(/instagram\.com\/(p|reel)\/([^/#]+)/i);
   return match ? `https://www.instagram.com/${match[1]}/${match[2]}/embed/` : url;
 };
-
-
-
