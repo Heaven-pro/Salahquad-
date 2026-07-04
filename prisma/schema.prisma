@@ -1,0 +1,118 @@
+// ============================================================
+//  Salah Quad Marrakech — Schéma de base de données (Prisma)
+//  PostgreSQL
+// ============================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Unité de tarification d'une excursion
+enum PriceUnit {
+  PERSON // prix par personne
+  VEHICLE // prix par véhicule (buggy)
+}
+
+// Cycle de vie d'une réservation
+enum BookingStatus {
+  PENDING // en attente de confirmation
+  CONFIRMED // confirmée par l'admin
+  CANCELLED // annulée
+  COMPLETED // réalisée
+}
+
+// ----- Excursions / activités -----
+model Excursion {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  category    String // quad | buggy | camel | horse | balloon | cross
+  titleFr     String
+  titleEn     String
+  descFr      String
+  descEn      String
+  // Prix de base, stocké en centimes d'euro pour éviter les flottants
+  priceCents  Int
+  unit        PriceUnit @default(PERSON)
+  rating      Float     @default(4.9)
+  reviews     String    @default("0")
+  tagFr       String?
+  tagEn       String?
+  // Durées disponibles : [{ "label": "1h", "mult": 1 }, ...]
+  durations   Json
+  // Listes "ce qui est inclus" par langue
+  includesFr  String[]
+  includesEn  String[]
+  active      Boolean   @default(true)
+  sortOrder   Int       @default(0)
+  bookings    Booking[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([category, active])
+}
+
+// ----- Réservations -----
+model Booking {
+  id            String        @id @default(cuid())
+  reference     String        @unique // ex: SQM-7F3A9
+  excursion     Excursion     @relation(fields: [excursionId], references: [id])
+  excursionId   String
+  date          DateTime
+  timeSlot      String // "09:00"
+  durationLabel String
+  pilots        Int           @default(1)
+  passengers    Int           @default(0)
+  children      Int           @default(0)
+  camelAddon    Boolean       @default(false)
+  hotelPickup   Boolean       @default(true)
+  pickupAddress String?
+  // Montant total recalculé côté serveur (centimes) — jamais celui du client
+  totalCents    Int
+  status        BookingStatus @default(PENDING)
+  customerName  String
+  customerEmail String
+  customerPhone String
+  message       String?
+  locale        String        @default("fr")
+  promoCode     String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([status, date])
+}
+
+// ----- Promotions / codes promo -----
+model Promotion {
+  id        String    @id @default(cuid())
+  code      String    @unique
+  percent   Int // remise en %
+  active    Boolean   @default(true)
+  expiresAt DateTime?
+  createdAt DateTime  @default(now())
+}
+
+// ----- Avis clients (modérés) -----
+model Review {
+  id        String   @id @default(cuid())
+  name      String
+  location  String
+  textFr    String
+  textEn    String
+  rating    Int      @default(5)
+  approved  Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+// ----- Administrateurs -----
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String   @default("Administrateur")
+  createdAt    DateTime @default(now())
+}
