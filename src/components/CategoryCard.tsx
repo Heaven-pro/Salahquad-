@@ -1,5 +1,5 @@
-﻿import Image, { type StaticImageData } from 'next/image';
-import { formatDualPrice } from '@/lib/pricing';
+import Image, { type StaticImageData } from 'next/image';
+import { formatDualPrice } from '@/lib/quad/pricing';
 import AppIcon, { type IconName } from '@/components/AppIcon';
 
 interface CategoryCardProps {

@@ -1,5 +1,5 @@
 import GalleryPage from '@/components/GalleryPage';
-import { getLocale, type Locale } from '@/lib/i18n';
+import { getLocale, type Locale } from '@/lib/quad/i18n';
 
 export const dynamic = 'force-dynamic';
 

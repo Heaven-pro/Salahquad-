@@ -1,7 +1,7 @@
 // /api/admin/login — POST : authentification de l'administrateur
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { createSession, destroySession } from '@/lib/auth';
+import { prisma } from '@/lib/quad/prisma';
+import { createSession, destroySession } from '@/lib/quad/auth';
 import bcrypt from 'bcryptjs';
 import { z } from 'zod';
 

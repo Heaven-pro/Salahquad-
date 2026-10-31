@@ -1,4 +1,4 @@
-﻿import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/quad/prisma';
 import type { ExcursionItem, ReviewItem } from '@/components/HomePage';
 
 const FALLBACK_EXCURSIONS: ExcursionItem[] = [
@@ -38,11 +38,11 @@ const FALLBACK_EXCURSIONS: ExcursionItem[] = [
     id: 'fallback-buggy-1000',
     slug: 'buggy-1000-desert',
     category: 'buggy',
-    titleFr: 'Buggy 1000cc - 1h',
-    titleEn: 'Buggy 1000cc - 1h',
-    descFr: 'Buggy Can-Am Maverick X3 Turbo RR 1000cc, experience premium dans la Palmeraie.',
-    descEn: 'Can-Am Maverick X3 Turbo RR 1000cc, premium experience in the Palmeraie.',
-    priceCents: 10000,
+    titleFr: 'Buggy 800cc - 1h',
+    titleEn: 'Buggy 800cc - 1h',
+    descFr: '1h de buggy 800cc dans la Palmeraie de Marrakech, avec guide, assurance et transfert inclus.',
+    descEn: '1h on an 800cc buggy in the Marrakech Palmeraie, with guide, insurance and transfer included.',
+    priceCents: 8000,
     unit: 'VEHICLE',
     tagFr: 'Premium',
     tagEn: 'Premium',
@@ -58,11 +58,11 @@ const FALLBACK_EXCURSIONS: ExcursionItem[] = [
     titleEn: 'Buggy 1000cc - Discovery',
     descFr: 'Une traversée premium entre la Palmeraie et les villages berberes.',
     descEn: 'A premium ride through the Palmeraie and Berber villages.',
-    priceCents: 12000,
+    priceCents: 13000,
     unit: 'VEHICLE',
     tagFr: 'Decouverte',
     tagEn: 'Discovery',
-    durations: [{ label: '1h30', mult: 1.4 }],
+    durations: [{ label: '1h', mult: 1 }, { label: '1h30', mult: 1.4 }],
     includesFr: ['200ch', 'Pause the dans un village berbere', 'Arréts photo', 'Navette hotel / riad incluse'],
     includesEn: ['200hp', 'Tea break in a Berber village', 'Photo stops', 'Hotel / riad shuttle included'],
   },
@@ -74,7 +74,7 @@ const FALLBACK_EXCURSIONS: ExcursionItem[] = [
     titleEn: 'Yamaha 80cc Cross - 1h',
     descFr: 'Session cross accessible, guidee par un moniteur professionnel.',
     descEn: 'Accessible cross session, guided by a professional instructor.',
-    priceCents: 10000,
+    priceCents: 9000,
     unit: 'PERSON',
     tagFr: 'Standard',
     tagEn: 'Standard',
@@ -90,7 +90,7 @@ const FALLBACK_EXCURSIONS: ExcursionItem[] = [
     titleEn: 'Premium Cross - Kawasaki KX 250',
     descFr: 'Cross premium sur Kawasaki KX 250, parfait pour les riders exigeants.',
     descEn: 'Premium cross on Kawasaki KX 250, perfect for demanding riders.',
-    priceCents: 12000,
+    priceCents: 10000,
     unit: 'PERSON',
     tagFr: 'Premium',
     tagEn: 'Premium',
@@ -158,7 +158,12 @@ export async function loadHomePageContent() {
   ]);
 
   const timeout = new Promise<null>((resolve) => setTimeout(() => resolve(null), 1200));
-  const result = await Promise.race([query, timeout]);
+  let result: Awaited<typeof query> | null;
+  try {
+    result = await Promise.race([query, timeout]);
+  } catch {
+    return { excursions: FALLBACK_EXCURSIONS, reviews: FALLBACK_REVIEWS };
+  }
 
   if (!result) {
     return { excursions: FALLBACK_EXCURSIONS, reviews: FALLBACK_REVIEWS };

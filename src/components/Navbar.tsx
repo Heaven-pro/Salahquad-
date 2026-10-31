@@ -1,10 +1,10 @@
-﻿'use client';
+'use client';
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { WHATSAPP_NUMBER } from '@/lib/contact';
-import logoImage from '@/lib/Logo.png';
+import { WHATSAPP_NUMBER } from '@/lib/quad/contact';
+import logoImage from '@/lib/quad/Logo.png';
 
 interface NavbarProps {
   locale: string;

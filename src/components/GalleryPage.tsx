@@ -1,5 +1,5 @@
-﻿import Image from 'next/image';
-import { LOCALES, LANGUAGE_LABELS, TRANSLATIONS, type Locale } from '@/lib/i18n';
+import Image from 'next/image';
+import { LOCALES, LANGUAGE_LABELS, TRANSLATIONS, type Locale } from '@/lib/quad/i18n';
 import Navbar from '@/components/Navbar';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import {
@@ -9,8 +9,8 @@ import {
   instagramHighlights,
   localGalleryImages,
   localGalleryVideos,
-} from '@/lib/gallery-content';
-import coverImage from '@/lib/image de garde.jpeg';
+} from '@/lib/quad/gallery-content';
+import coverImage from '@/lib/quad/image de garde.jpeg';
 
 interface GalleryPageProps {
   locale: Locale;

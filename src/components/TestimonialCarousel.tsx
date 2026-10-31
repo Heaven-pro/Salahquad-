@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import type { Locale } from '@/lib/i18n';
+import type { Locale } from '@/lib/quad/i18n';
 
 interface Review {
   name: string;

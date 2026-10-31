@@ -45,21 +45,21 @@ const EXCURSIONS = [
     sortOrder: 2,
   },
   // ═══════════════════════════════════════════════════════════
-  //  🚗 BUGGY 1000cc
+  //  🚗 BUGGY 800cc
   // ═══════════════════════════════════════════════════════════
   {
-    slug: 'buggy-1000-desert', category: 'buggy', priceCents: 10000, unit: PriceUnit.VEHICLE,
+    slug: 'buggy-1000-desert', category: 'buggy', priceCents: 8000, unit: PriceUnit.VEHICLE,
     rating: 5.0, reviews: '320+', tagFr: 'Offre', tagEn: 'Offer',
-    titleFr: 'Buggy 1000cc — 1h', titleEn: 'Buggy 1000cc — 1h',
-    descFr: '1h de buggy 1000cc sans balade chameau ni pause thé. Parcours rapide et sensations dans la Palmeraie de Marrakech.',
-    descEn: '1h 1000cc buggy ride without camel ride or tea break. Fast track and thrills in the Marrakech Palmeraie.',
+    titleFr: 'Buggy 800cc — 1h', titleEn: '800cc Buggy — 1h',
+    descFr: '1h de buggy 800cc sans balade chameau ni pause thé. Parcours rapide et sensations dans la Palmeraie de Marrakech.',
+    descEn: '1h 800cc buggy ride without camel ride or tea break. Fast track and thrills in the Marrakech Palmeraie.',
     durations: [{ label: '1h', mult: 1 }],
-    includesFr: ['Can-Am Maverick X3 Turbo RR — 200ch', 'Transmission auto — facile à conduire', 'Guide professionnel & assurance incluse', 'Arrêts photo dans la Palmeraie de Marrakech', 'Navette hôtel / riad incluse'],
-    includesEn: ['Can-Am Maverick X3 Turbo RR — 200hp', 'Automatic — easy to drive', 'Professional guide & insurance included', 'Photo stops in the Marrakech Palmeraie', 'Hotel / riad shuttle included'],
+    includesFr: ['Buggy 800cc', 'Transmission automatique — facile à conduire', 'Guide professionnel & assurance incluse', 'Arrêts photo dans la Palmeraie de Marrakech', 'Navette hôtel / riad incluse'],
+    includesEn: ['800cc buggy', 'Automatic — easy to drive', 'Professional guide & insurance included', 'Photo stops in the Marrakech Palmeraie', 'Hotel / riad shuttle included'],
     sortOrder: 3,
   },
   {
-    slug: 'buggy-1000-palmeraie', category: 'buggy', priceCents: 12000, unit: PriceUnit.VEHICLE,
+    slug: 'buggy-1000-palmeraie', category: 'buggy', priceCents: 13000, unit: PriceUnit.VEHICLE,
     rating: 4.9, reviews: '210+', tagFr: 'Découverte', tagEn: 'Discovery',
     titleFr: 'Buggy Can-Am X3 Turbo — Palmeraie & Villages', titleEn: 'Can-Am X3 Turbo Buggy — Palmeraie & Villages',
     descFr: 'Explorez la Palmeraie et les villages berbères au volant d\'un Can-Am X3 Turbo 1000cc. Paysages verdoyants, pistes de sable et rencontres authentiques. Idéal pour une première expérience buggy premium.',
@@ -73,22 +73,22 @@ const EXCURSIONS = [
   //  🏁 CROSS MOTO
   // ═══════════════════════════════════════════════════════════
   {
-    slug: 'cross-yamaha-yz', category: 'cross', priceCents: 10000, unit: PriceUnit.PERSON,
+    slug: 'cross-yamaha-yz', category: 'cross', priceCents: 9000, unit: PriceUnit.PERSON,
     rating: 4.9, reviews: '95+', tagFr: 'Standard', tagEn: 'Standard',
     titleFr: 'Cross Yamaha 80cc — 1h', titleEn: 'Yamaha 80cc Cross — 1h',
-    descFr: '1000 MAD / 100 € pour 1h de cross sur Yamaha 80cc, sans balade chameau ni pause thé. Session accessible et dynamique.',
-    descEn: '1000 MAD / 100 € for 1h cross on a Yamaha 80cc, without camel ride or tea break. Accessible and dynamic session.',
+    descFr: '900 MAD / 90 € pour 1h de cross sur Yamaha 80cc, sans balade chameau ni pause thé. Session accessible et dynamique.',
+    descEn: '900 MAD / 90 € for 1h cross on a Yamaha 80cc, without camel ride or tea break. Accessible and dynamic session.',
     durations: [{ label: '1h', mult: 1 }],
     includesFr: ['Yamaha 80cc cross', 'Équipement complet fourni', 'Moniteur professionnel', 'Circuit privé sécurisé', 'Navette hôtel / riad incluse'],
     includesEn: ['Yamaha 80cc cross bike', 'Full gear provided', 'Professional instructor', 'Secured private track', 'Hotel / riad shuttle included'],
     sortOrder: 5,
   },
   {
-    slug: 'cross-kawasaki-kx', category: 'cross', priceCents: 12000, unit: PriceUnit.PERSON,
+    slug: 'cross-kawasaki-kx', category: 'cross', priceCents: 10000, unit: PriceUnit.PERSON,
     rating: 4.9, reviews: '65+', tagFr: 'Premium', tagEn: 'Premium',
     titleFr: 'Cross Premium — Kawasaki KX 250', titleEn: 'Premium Cross — Kawasaki KX 250',
-    descFr: '1200 MAD / 120 € pour 1h de cross premium sur Kawasaki KX 250, sans balade chameau ni pause thé. Session haut de gamme pour les riders exigeants.',
-    descEn: '1200 MAD / 120 € for 1h premium cross on Kawasaki KX 250, without camel ride or tea break. High-end session for demanding riders.',
+    descFr: '1000 MAD / 100 € pour 1h de cross premium sur Kawasaki KX 250, sans balade chameau ni pause thé. Session haut de gamme pour les riders exigeants.',
+    descEn: '1000 MAD / 100 € for 1h premium cross on Kawasaki KX 250, without camel ride or tea break. High-end session for demanding riders.',
     durations: [{ label: '1h', mult: 1 }, { label: '2h', mult: 1.85 }],
     includesFr: ['Kawasaki KX 250 — 250cc mono-cylindre', 'Équipement complet fourni', 'Moniteur expert dédié', 'Circuit technique dans la Palmeraie', 'Arrêts photo', 'Navette hôtel / riad incluse'],
     includesEn: ['Kawasaki KX 250 — 250cc single-cylinder', 'Full gear provided', 'Dedicated expert instructor', 'Technical track in the Marrakech Palmeraie', 'Photo stops', 'Hotel / riad shuttle included'],

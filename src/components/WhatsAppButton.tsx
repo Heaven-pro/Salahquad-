@@ -1,7 +1,7 @@
-﻿'use client';
+'use client';
 
-import { type Locale } from '@/lib/i18n';
-import { WHATSAPP_NUMBER } from '@/lib/contact';
+import { type Locale } from '@/lib/quad/i18n';
+import { WHATSAPP_NUMBER } from '@/lib/quad/contact';
 
 interface Props {
   locale: Locale;

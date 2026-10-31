@@ -1,7 +1,7 @@
 // /api/bookings/[id] — PATCH : changer le statut (confirmer / annuler) — admin
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { getSession } from '@/lib/auth';
+import { prisma } from '@/lib/quad/prisma';
+import { getSession } from '@/lib/quad/auth';
 import { z } from 'zod';
 
 const schema = z.object({ status: z.enum(['PENDING', 'CONFIRMED', 'CANCELLED', 'COMPLETED']) });

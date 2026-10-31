@@ -1,9 +1,9 @@
 ﻿'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import type { Locale, Translations } from '@/lib/i18n';
-import { computeTotalCents } from '@/lib/pricing';
-import { WHATSAPP_NUMBER } from '@/lib/contact';
+import type { Locale, Translations } from '@/lib/quad/i18n';
+import { computeTotalCents } from '@/lib/quad/pricing';
+import { WHATSAPP_NUMBER } from '@/lib/quad/contact';
 
 type Duration = { label: string; mult: number };
 type Exc = { slug: string; titleFr: string; titleEn: string; priceCents: number; unit: 'PERSON' | 'VEHICLE'; durations: Duration[]; category: string };

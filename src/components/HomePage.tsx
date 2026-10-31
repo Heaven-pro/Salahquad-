@@ -1,10 +1,10 @@
-﻿'use client';
+'use client';
 
 import Image from 'next/image';
 import { useMemo } from 'react';
 import { usePathname } from 'next/navigation';
-import { formatDualPrice } from '@/lib/pricing';
-import { LOCALES, LANGUAGE_LABELS, TRANSLATIONS, getLocale, type Locale } from '@/lib/i18n';
+import { formatDualPrice } from '@/lib/quad/pricing';
+import { LOCALES, LANGUAGE_LABELS, TRANSLATIONS, getLocale, type Locale } from '@/lib/quad/i18n';
 import BookingWidget from '@/components/BookingWidget';
 import Navbar from '@/components/Navbar';
 import CategoryCard from '@/components/CategoryCard';
@@ -12,20 +12,19 @@ import TestimonialCarousel from '@/components/TestimonialCarousel';
 import StatsCounter from '@/components/StatsCounter';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import AppIcon from '@/components/AppIcon';
-import { WHATSAPP_NUMBER } from '@/lib/contact';
-import { INSTAGRAM_PROFILE_URL } from '@/lib/gallery-content';
-import logoImage from '@/lib/Logo.png';
-import coverImage from '@/lib/image de garde.jpeg';
-import categoryQuadImage from '@/lib/4 quads.png';
-import categoryBuggyImage from '@/lib/2 buggy.png';
-import categoryCrossImage from '@/lib/2 cross.png';
-import quadOfferImage from '@/lib/quad.png';
-import duoQuadImage from '@/lib/duo quad.png';
-import raptorImage from '@/lib/raptor.png';
-import buggyPImage from '@/lib/buggy p.png';
-import buggyPremiumImage from '@/lib/buggy premium.png';
-import cross80Image from '@/lib/cross 80.png';
-import cross250Image from '@/lib/cross 250.png';
+import { WHATSAPP_NUMBER } from '@/lib/quad/contact';
+import { INSTAGRAM_PROFILE_URL } from '@/lib/quad/gallery-content';
+import logoImage from '@/lib/quad/Logo.png';
+import coverImage from '@/lib/quad/image de garde.jpeg';
+import categoryQuadImage from '@/lib/quad/4 quads.png';
+import categoryCrossImage from '@/lib/quad/2 cross.png';
+import quadOfferImage from '@/lib/quad/quad.png';
+import duoQuadImage from '@/lib/quad/duo quad.png';
+import raptorImage from '@/lib/quad/raptor.png';
+import buggyPImage from '@/lib/quad/buggy p.png';
+import buggyPremiumImage from '@/lib/quad/buggy premium.png';
+import cross80Image from '@/lib/quad/cross 80.png';
+import cross250Image from '@/lib/quad/cross 250.png';
 
 export type ExcursionItem = {
   id: string;
@@ -81,7 +80,7 @@ export default function HomePage({ excursions, reviews }: HomePageProps) {
   }, [excursions]);
 
   const categoryKeys = ['quad', 'buggy', 'cross'] as const;
-  const categoryImages = { quad: categoryQuadImage, buggy: categoryBuggyImage, cross: categoryCrossImage } as const;
+  const categoryImages = { quad: categoryQuadImage, buggy: buggyPImage, cross: categoryCrossImage } as const;
   const excursionImages: Record<string, typeof coverImage> = {
     'quad-palmeraie': quadOfferImage,
     'quad-duo': duoQuadImage,

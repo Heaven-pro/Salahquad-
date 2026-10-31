@@ -1,11 +1,11 @@
-﻿import type { StaticImageData } from 'next/image';
+import type { StaticImageData } from 'next/image';
 
-import groupThreeImage from '@/lib/groupe 3.JPG';
-import twoBuggyImage from '@/lib/2 buggy.png';
-import twoCrossImage from '@/lib/2 cross.png';
-import fourQuadsImage from '@/lib/4 quads.png';
-import crosseeImage from '@/lib/crossee.JPG';
-import crossAndBuggyImage from '@/lib/cross et buggy.JPG';
+import groupThreeImage from '@/lib/quad/groupe 3.JPG';
+import twoBuggyImage from '@/lib/quad/2 buggy.png';
+import twoCrossImage from '@/lib/quad/2 cross.png';
+import fourQuadsImage from '@/lib/quad/4 quads.png';
+import crosseeImage from '@/lib/quad/crossee.JPG';
+import crossAndBuggyImage from '@/lib/quad/cross et buggy.JPG';
 import instagramProfilImage from '@/lib/instagram/profil.jpeg';
 import instagramShot1Image from '@/lib/instagram/instagram-1.jpeg';
 import instagramShot2Image from '@/lib/instagram/instagram-2.jpeg';

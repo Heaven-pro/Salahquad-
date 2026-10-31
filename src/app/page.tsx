@@ -1,5 +1,5 @@
 import HomePage from '@/components/HomePage';
-import { loadHomePageContent } from '@/lib/homepage-content';
+import { loadHomePageContent } from '@/lib/quad/homepage-content';
 
 export const dynamic = 'force-dynamic';
 

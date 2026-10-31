@@ -1,15 +1,15 @@
-﻿// ============================================================
+// ============================================================
 //  /api/bookings
 //  POST : création d'une réservation (public)
 //  GET  : liste des réservations (admin only)
 // ============================================================
 import crypto from 'crypto';
 import { NextRequest, NextResponse } from 'next/server';
-import { getSession } from '@/lib/auth';
-import { sendBookingEmails } from '@/lib/mail';
-import { computeTotalCents, type Duration } from '@/lib/pricing';
-import { prisma } from '@/lib/prisma';
-import { bookingSchema } from '@/lib/validation';
+import { getSession } from '@/lib/quad/auth';
+import { sendBookingEmails } from '@/lib/quad/mail';
+import { computeTotalCents, type Duration } from '@/lib/quad/pricing';
+import { prisma } from '@/lib/quad/prisma';
+import { bookingSchema } from '@/lib/quad/validation';
 
 const makeRef = () => `SQM-${crypto.randomBytes(4).toString('hex').toUpperCase()}`;
 

@@ -1,5 +1,5 @@
-﻿import { prisma } from '@/lib/prisma';
-import { formatDualPrice } from '@/lib/pricing';
+import { prisma } from '@/lib/quad/prisma';
+import { formatDualPrice } from '@/lib/quad/pricing';
 
 export const dynamic = 'force-dynamic';
 

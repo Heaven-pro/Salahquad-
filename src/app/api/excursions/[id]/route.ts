@@ -1,8 +1,8 @@
 // /api/excursions/[id] — PUT (modifier), DELETE (supprimer) — admin only
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { excursionSchema } from '@/lib/validation';
-import { getSession } from '@/lib/auth';
+import { prisma } from '@/lib/quad/prisma';
+import { excursionSchema } from '@/lib/quad/validation';
+import { getSession } from '@/lib/quad/auth';
 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
   const session = await getSession();
