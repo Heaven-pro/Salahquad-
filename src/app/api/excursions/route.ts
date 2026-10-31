@@ -3,13 +3,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/quad/prisma';
 import { excursionSchema } from '@/lib/quad/validation';
 import { getSession } from '@/lib/quad/auth';
+import { applyOfferOverrides } from '@/lib/quad/offer-overrides';
 
 export async function GET() {
   const excursions = await prisma.excursion.findMany({
     where: { active: true },
     orderBy: { sortOrder: 'asc' },
   });
-  return NextResponse.json({ excursions });
+  return NextResponse.json({ excursions: excursions.map(applyOfferOverrides) });
 }
 
 export async function POST(req: NextRequest) {

@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/quad/prisma';
+import { applyOfferOverrides } from '@/lib/quad/offer-overrides';
 import type { ExcursionItem, ReviewItem } from '@/components/HomePage';
 
 const FALLBACK_EXCURSIONS: ExcursionItem[] = [
@@ -125,7 +126,9 @@ const FALLBACK_REVIEWS: ReviewItem[] = [
 ];
 
 const toMappedExcursions = (items: Awaited<ReturnType<typeof prisma.excursion.findMany>>): ExcursionItem[] =>
-  items.map((e) => ({
+  items.map((item) => {
+    const e = applyOfferOverrides(item);
+    return ({
     id: e.id,
     slug: e.slug,
     category: e.category,
@@ -140,7 +143,8 @@ const toMappedExcursions = (items: Awaited<ReturnType<typeof prisma.excursion.fi
     durations: e.durations as unknown as { label: string; mult: number }[],
     includesFr: e.includesFr,
     includesEn: e.includesEn,
-  }));
+    });
+  });
 
 const toMappedReviews = (items: Awaited<ReturnType<typeof prisma.review.findMany>>): ReviewItem[] =>
   items.map((r) => ({

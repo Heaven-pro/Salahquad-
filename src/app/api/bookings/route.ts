@@ -10,6 +10,7 @@ import { sendBookingEmails } from '@/lib/quad/mail';
 import { computeTotalCents, type Duration } from '@/lib/quad/pricing';
 import { prisma } from '@/lib/quad/prisma';
 import { bookingSchema } from '@/lib/quad/validation';
+import { applyOfferOverrides } from '@/lib/quad/offer-overrides';
 
 const makeRef = () => `SQM-${crypto.randomBytes(4).toString('hex').toUpperCase()}`;
 
@@ -32,10 +33,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true, reference: makeRef() });
   }
 
-  const exc = await prisma.excursion.findUnique({ where: { slug: d.excursionSlug } });
-  if (!exc || !exc.active) {
+  const storedExcursion = await prisma.excursion.findUnique({ where: { slug: d.excursionSlug } });
+  if (!storedExcursion || !storedExcursion.active) {
     return NextResponse.json({ error: 'Excursion introuvable' }, { status: 404 });
   }
+  const exc = applyOfferOverrides(storedExcursion);
 
   let promoPercent = 0;
   if (d.promoCode) {
